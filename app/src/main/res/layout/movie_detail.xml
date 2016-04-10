@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:id="@+id/layoutTitle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="60sp"
+            android:textColor="@color/white"
+            android:id="@+id/title"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/coverImage"
+        android:layout_below="@+id/layoutTitle"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/releaseDate"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:textSize="30sp"
+        android:layout_alignTop="@+id/coverImage"
+        android:layout_toRightOf="@+id/coverImage"
+        android:layout_toEndOf="@+id/coverImage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/average"
+        android:layout_alignBottom="@+id/coverImage"
+        android:layout_alignLeft="@+id/releaseDate"
+        android:layout_alignStart="@+id/releaseDate"
+        android:layout_marginBottom="43dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/sinopsis"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/coverImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

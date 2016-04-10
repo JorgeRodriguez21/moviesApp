@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+    <string name="title_movie_detail">Movie Detail</string>
+    <string name="movie_tag">movie</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="api_key"></string>
+    <string name="settings">settings</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="popular_movie_url">https://api.themoviedb.org/3/movie/popular?api_key=</string>
+    <string name="top_rated_movie_url">https://api.themoviedb.org/3/movie/top_rated?api_key=</string>
+</resources>
