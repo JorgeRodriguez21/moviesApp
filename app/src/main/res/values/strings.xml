@@ -10,4 +10,17 @@
     <string name="most_popular">Most Popular</string>
     <string name="popular_movie_url">https://api.themoviedb.org/3/movie/popular?api_key=</string>
     <string name="top_rated_movie_url">https://api.themoviedb.org/3/movie/top_rated?api_key=</string>
+    <string name="review">"Review "</string>
+    <string name="first_url_part">https://api.themoviedb.org/3/movie/</string>
+    <string name="last_video_url_part">/videos?api_key=</string>
+    <string name="last_review_url_part">/reviews?api_key=</string>
+    <string name="close">Cerrar</string>
+    <string name="web_youtube_link">http://www.youtube.com/watch?v=</string>
+    <string name="application_youtube_link">vnd.youtube:</string>
+    <string name="images_url">http://image.tmdb.org/t/p/w300</string>
+    <string name="images_url_500">http://image.tmdb.org/t/p/w500</string>
+    <string name="trailers">Trailers</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="favorite">Favorito</string>
+    <string name="search_favorites">Ver Favoritos</string>
 </resources>

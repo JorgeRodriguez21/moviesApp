@@ -1,4 +1,4 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.fragments.MovieDetailFragment;
 import com.example.android.popularmovies.models.Movie;
 
 /**
@@ -40,7 +42,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         //
 
         Movie movie = getIntent().getParcelableExtra(getString(R.string.movie_tag));
-        System.out.println("Esta es la movie ");
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.

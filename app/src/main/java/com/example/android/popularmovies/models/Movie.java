@@ -30,6 +30,7 @@ public class Movie implements Parcelable {
 
 
     protected Movie(Parcel in) {
+        id= in.readLong();
         posterPath = in.readString();
         name = in.readString();
         overview = in.readString();
@@ -79,10 +80,35 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
         dest.writeString(posterPath);
         dest.writeString(name);
         dest.writeString(overview);
         dest.writeSerializable(releaseDate);
         dest.writeDouble(voteAverage);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Movie)) return false;
+
+        Movie movie = (Movie) o;
+
+        if (!id.equals(movie.id)) return false;
+        if (posterPath != null ? !posterPath.equals(movie.posterPath) : movie.posterPath != null)
+            return false;
+        if (name != null ? !name.equals(movie.name) : movie.name != null) return false;
+        if (overview != null ? !overview.equals(movie.overview) : movie.overview != null)
+            return false;
+        if (releaseDate != null ? !releaseDate.equals(movie.releaseDate) : movie.releaseDate != null)
+            return false;
+        return voteAverage != null ? voteAverage.equals(movie.voteAverage) : movie.voteAverage == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

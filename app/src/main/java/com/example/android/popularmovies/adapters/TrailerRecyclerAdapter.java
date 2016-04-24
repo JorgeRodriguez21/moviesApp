@@ -1,31 +1,31 @@
 package com.example.android.popularmovies.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.popularmovies.R;
-import com.example.android.popularmovies.models.Movie;
-import com.squareup.picasso.Picasso;
+import com.example.android.popularmovies.models.MovieTrailer;
 
 import java.util.List;
 
 /**
  * Created by negri on 07/04/2016.
  */
-public class MovieRecyclerAdapter extends RecyclerView.Adapter implements View.OnClickListener {
+public class TrailerRecyclerAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
     private Context context;
-    private List<Movie> moviesList;
+    private List<MovieTrailer> movieTrailerList;
     private View.OnClickListener listener;
 
 
-    public MovieRecyclerAdapter(Context context, List<Movie> moviesList) {
+    public TrailerRecyclerAdapter(Context context, List<MovieTrailer> moviesList) {
         this.context = context;
-        this.moviesList = moviesList;
+        this.movieTrailerList = moviesList;
     }
     @Override
     public void onClick(View v) {
@@ -33,17 +33,18 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter implements View.O
             listener.onClick(v);
     }
 
-
     public void setClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        protected ImageView cover;
+        protected CardView cover;
+        protected TextView trailerName;
 
         public ViewHolder(View view) {
             super(view);
-            cover = (ImageView) view.findViewById(R.id.coverImage);
+            cover = (CardView) view.findViewById(R.id.trailerContainer);
+            trailerName = (TextView) view.findViewById(R.id.trailerName);
         }
     }
 
@@ -51,8 +52,8 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter implements View.O
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
         RecyclerView.ViewHolder vh;
-            v = LayoutInflater.from(context).inflate(R.layout.movie_list_content, parent, false);
-        v.findViewById(R.id.coverImage).setOnClickListener(this);
+            v = LayoutInflater.from(context).inflate(R.layout.trailer_card, parent, false);
+        v.findViewById(R.id.trailerContainer).setOnClickListener(this);
             vh = new ViewHolder(v);
         return vh;
     }
@@ -60,14 +61,12 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter implements View.O
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder) {
-            Picasso.with(context)
-                    .load(context.getString(R.string.images_url_500)+moviesList.get(position).getPosterPath())
-                    .into(((ViewHolder) holder).cover);
-            ((ViewHolder) holder).cover.setTag(moviesList.get(position));
+            ((ViewHolder) holder).cover.setTag(movieTrailerList.get(position));
+            ((ViewHolder) holder).trailerName.setText(movieTrailerList.get(position).getName());
         }
     }
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        return movieTrailerList.size();
     }
 }

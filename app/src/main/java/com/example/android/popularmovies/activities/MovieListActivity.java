@@ -1,4 +1,4 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.adapters.MovieRecyclerAdapter;
+import com.example.android.popularmovies.fragments.MovieDetailFragment;
 import com.example.android.popularmovies.handlers.HandlerCallback;
 import com.example.android.popularmovies.handlers.MovieHandler;
 import com.example.android.popularmovies.models.Movie;
+import com.example.android.popularmovies.util.SharedPreferencesUtils;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -37,6 +42,8 @@ public class MovieListActivity extends AppCompatActivity {
     @InjectView(R.id.movie_list)
     protected RecyclerView recyclerView;
     MovieRecyclerAdapter adapter;
+    private ArrayList<Movie> favorites;
+    private boolean isInFavorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +79,19 @@ public class MovieListActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.top_rated) {
             getMoviesData(R.string.top_rated_movie_url);
+            isInFavorites = false;
             return true;
         }else if(id == R.id.most_popular){
             getMoviesData(R.string.popular_movie_url);
+            isInFavorites = false;
+            return true;
+        }else  if(id == R.id.favorites) {
+            getFavoriteMovies();
+            isInFavorites = true;
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -136,4 +147,24 @@ public class MovieListActivity extends AppCompatActivity {
         };
     }
 
+    private void getFavoriteMovies(){
+
+        favorites = SharedPreferencesUtils.obtainFavorites(this);
+        if(favorites == null){
+            favorites = new ArrayList<>();
+        }
+         int columnsNumber = mTwoPane?3:2;
+            adapter = new MovieRecyclerAdapter(this,favorites);
+            adapter.setClickListener(showMoviesInformation());
+            GridLayoutManager manager = new GridLayoutManager(this, columnsNumber);
+            recyclerView.setLayoutManager(manager);
+            recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isInFavorites)
+            getFavoriteMovies();
+    }
 }
